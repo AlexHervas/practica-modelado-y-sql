@@ -611,3 +611,9 @@ insert into copia (id_pelicula)
 select p.id_pelicula
 from tmp_videoclub v
 inner join pelicula p on v.titulo = p.titulo;
+
+insert into prestamo (id_copia, id_socio, fecha_alquiler, fecha_devolucion)
+select c.id_copia, s.id_socio, tv.fecha_alquiler, tv.fecha_devolucion
+from tmp_videoclub tv
+inner join copia c on tv.id_copia = c.id_copia
+inner join socio s on tv.dni = s.dni;
