@@ -617,3 +617,9 @@ select c.id_copia, s.id_socio, tv.fecha_alquiler, tv.fecha_devolucion
 from tmp_videoclub tv
 inner join copia c on tv.id_copia = c.id_copia
 inner join socio s on tv.dni = s.dni;
+
+select p.titulo, count(c.id_copia) as copias_disponibles
+from pelicula p
+inner join copia c on p.id_pelicula = c.id_pelicula
+left join prestamo pr on c.id_copia = pr.id_copia and pr.fecha_devolucion is null
+group by p.titulo;

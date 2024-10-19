@@ -24,11 +24,12 @@ película necesito registrar el título, género, director y sinopsis.
 fecha en la que se la ha llevado y la fecha de la devolución. Cuando una película no tiene 
 fecha de devolución, la consideramos prestada. 
 - Para ir tirando, necesito consultar a menudo: 
-o Que películas están disponibles para alquilar en este momento (no están 
-prestadas). Necesito saber el título de la película y el número de copias 
-disponibles. 
-Condición de APTO 
-Esta práctica se entregará en dos partes     : 
+    - Que películas están disponibles para alquilar en este momento (no están 
+    prestadas). Necesito saber el título de la película y el número de copias 
+    disponibles.
+
+## Condición de APTO 
+Esta práctica se entregará en dos partes: 
 - Diagrama Entidad/Relación en formato draw.io 
 - Script SQL que debe crear un nuevo esquema, crear todas las tablas, cargar datos y las 
 dos consultas que se piden (aunque el script solo mostrará la última, deben ir las dos). 
