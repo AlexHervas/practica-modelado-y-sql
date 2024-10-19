@@ -40,3 +40,13 @@ create table if not exists prestamo (
     fecha_alquiler date not null,
     fecha_devolucion date
 );
+
+alter table correspondencia
+add constraint fk_id_socio_correspondencia foreign key (id_socio) references socio(id_socio);
+
+alter table copia
+add constraint fk_id_pelicula foreign key (id_pelicula) references pelicula(id_pelicula);
+
+alter table prestamo
+add constraint fk_id_copia foreign key (id_copia) references copia(id_copia),
+add constraint fk_id_socio_prestamo foreign key (id_socio) references socio(id_socio);
