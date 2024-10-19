@@ -606,3 +606,8 @@ inner join socio s on tv.dni = s.dni;
 insert into pelicula (titulo, genero, director, sinopsis)
 select distinct tv.titulo, tv.genero, tv.director, tv.sinopsis
 from tmp_videoclub tv;
+
+insert into copia (id_pelicula)
+select p.id_pelicula
+from tmp_videoclub v
+inner join pelicula p on v.titulo = p.titulo;
