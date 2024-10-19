@@ -623,3 +623,10 @@ from pelicula p
 inner join copia c on p.id_pelicula = c.id_pelicula
 left join prestamo pr on c.id_copia = pr.id_copia and pr.fecha_devolucion is null
 group by p.titulo;
+
+select p.titulo, count(c.id_copia) as copias_alquiladas
+from pelicula p
+inner join copia c on p.id_pelicula = c.id_pelicula
+inner join prestamo pr on c.id_copia = pr.id_copia
+where pr.fecha_devolucion is null
+group by p.titulo;
