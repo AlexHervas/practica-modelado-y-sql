@@ -602,3 +602,7 @@ insert into correspondencia (id_socio, codigo_postal, calle, numero, piso, letra
 select distinct s.id_socio, tv.codigo_postal, tv.calle, cast(tv.numero as integer), tv.piso, tv.letra
 from tmp_videoclub tv
 inner join socio s on tv.dni = s.dni;
+
+insert into pelicula (titulo, genero, director, sinopsis)
+select distinct tv.titulo, tv.genero, tv.director, tv.sinopsis
+from tmp_videoclub tv;
