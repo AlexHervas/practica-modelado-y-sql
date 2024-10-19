@@ -597,3 +597,8 @@ INSERT INTO tmp_videoclub (id_copia,fecha_alquiler_texto,dni,nombre,apellido_1,a
 insert into socio (dni, nombre, apellidos, fecha_nacimiento, telefono)
 select distinct tv.dni, tv.nombre, concat(apellido_1, ' ', apellido_2) apellidos,cast(tv.fecha_nacimiento as date),telefono
 from tmp_videoclub tv;
+
+insert into correspondencia (id_socio, codigo_postal, calle, numero, piso, letra)
+select distinct s.id_socio, tv.codigo_postal, tv.calle, cast(tv.numero as integer), tv.piso, tv.letra
+from tmp_videoclub tv
+inner join socio s on tv.dni = s.dni;
