@@ -607,10 +607,10 @@ insert into pelicula (titulo, genero, director, sinopsis)
 select distinct tv.titulo, tv.genero, tv.director, tv.sinopsis
 from tmp_videoclub tv;
 
-insert into copia (id_pelicula)
-select p.id_pelicula
-from tmp_videoclub v
-inner join pelicula p on v.titulo = p.titulo;
+insert into copia (id_copia, id_pelicula)
+select distinct tv.id_copia, p.id_pelicula
+from tmp_videoclub tv
+inner join pelicula p on tv.titulo = p.titulo;
 
 insert into prestamo (id_copia, id_socio, fecha_alquiler, fecha_devolucion)
 select c.id_copia, s.id_socio, tv.fecha_alquiler, tv.fecha_devolucion
@@ -618,15 +618,9 @@ from tmp_videoclub tv
 inner join copia c on tv.id_copia = c.id_copia
 inner join socio s on tv.dni = s.dni;
 
-select p.titulo, count(c.id_copia) as copias_disponibles
+select p.titulo, count(distinct c.id_copia) as copias_disponibles
 from pelicula p
 inner join copia c on p.id_pelicula = c.id_pelicula
 left join prestamo pr on c.id_copia = pr.id_copia and pr.fecha_devolucion is null
-group by p.titulo;
-
-select p.titulo, count(c.id_copia) as copias_alquiladas
-from pelicula p
-inner join copia c on p.id_pelicula = c.id_pelicula
-inner join prestamo pr on c.id_copia = pr.id_copia
-where pr.fecha_devolucion is null
+where pr.id_prestamo is null
 group by p.titulo;
